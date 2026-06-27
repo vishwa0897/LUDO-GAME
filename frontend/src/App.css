@@ -1,0 +1,182 @@
+* { box-sizing: border-box; }
+
+.ludo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.controls-panel {
+  background: white;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* --- NEW: Turn Indicator Banner --- */
+.turn-indicator {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.red-turn { background-color: #ffcdd2; color: #b71c1c; border: 1px solid #e53935; }
+.green-turn { background-color: #c8e6c9; color: #1b5e20; border: 1px solid #43a047; }
+.yellow-turn { background-color: #fff9c4; color: #f57f17; border: 1px solid #fdd835; }
+.blue-turn { background-color: #bbdefb; color: #0d47a1; border: 1px solid #1e88e5; }
+
+.dice-show {
+  font-size: 24px;
+  font-weight: bold;
+  background: #333;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.status-msg { font-size: 16px; color: #555; margin-bottom: 15px; }
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s;
+}
+
+.btn:active { transform: scale(0.95); }
+.red-btn { background-color: #e53935; }
+.green-btn { background-color: #43a047; }
+.yellow-btn { background-color: #fdd835; color: black; }
+.blue-btn { background-color: #1e88e5; }
+
+/* --- NEW: Disabled Buttons Styling --- */
+.btn:disabled {
+  background-color: #bdbdbd !important;
+  color: #757575 !important;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+}
+
+/* The Real Ludo Board */
+.ludo-board {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 1 / 1;
+  background-color: white;
+  border: 5px solid #333;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.grid-cell {
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+}
+
+/* Background Colors */
+.bg-red { background-color: #ffcdd2; }
+.bg-green { background-color: #c8e6c9; }
+.bg-yellow { background-color: #fff9c4; }
+.bg-blue { background-color: #bbdefb; }
+
+.base-zone { border: none; }
+.red-base { background-color: #e53935; border: 1px solid #c62828;}
+.green-base { background-color: #43a047; border: 1px solid #2e7d32;}
+.yellow-base { background-color: #fdd835; border: 1px solid #fbc02d;}
+.blue-base { background-color: #1e88e5; border: 1px solid #1565c0;}
+
+.center-home {
+  background: linear-gradient(135deg, #e53935 25%, #1e88e5 25% 50%, #fdd835 50% 75%, #43a047 75%);
+  border: none;
+}
+
+.safe-star {
+  background-color: #e0e0e0;
+  position: relative;
+}
+
+.safe-star::after {
+  content: '⭐';
+  font-size: 12px;
+  position: absolute;
+  opacity: 0.5;
+}
+
+/* Tokens */
+.token {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.red-token { background-color: #b71c1c; }
+.green-token { background-color: #1b5e20; }
+.yellow-token { background-color: #f57f17; }
+.blue-token { background-color: #0d47a1; }
+
+
+/* --- NEW: Token Hover & Click Effects --- */
+.token {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Jab meri turn ho aur dice roll ho chuka ho, toh meri goti thodi highlight ho */
+.my-turn-token {
+  animation: pulse-token 1.5s infinite;
+}
+
+.my-turn-token:hover {
+  transform: scale(1.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  z-index: 20;
+}
+
+@keyframes pulse-token {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); box-shadow: 0 0 8px white; }
+  100% { transform: scale(1); }
+}
+
+/* Naya Roll Button */
+.roll-btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  width: 100%;
+}
